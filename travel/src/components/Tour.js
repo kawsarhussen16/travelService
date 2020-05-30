@@ -1,30 +1,40 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import bg from "../asset/canyon-min.png";
-
+import StarSharpIcon from "@material-ui/icons/StarSharp";
+import { connect } from "react-redux";
 //const image = { bg: "black" };
 class Tour extends Component {
   render() {
+    console.log(this.props);
     return (
       <TourContainer bg={bg}>
         <Content>
           <Title>Breathtaking Antelope Canyon Tour</Title>
           <Ratings>
-            <Star>5.0</Star>
-            <ReviewNumber>475 reviews</ReviewNumber>
+            <Star>
+              {" "}
+              <StarSharpIcon color="secondary" />
+              <p>{this.props.avgRating}</p>
+            </Star>
+            <ReviewNumber>{this.props.totalReviews} reviews</ReviewNumber>
           </Ratings>
         </Content>
       </TourContainer>
     );
   }
 }
+const mapStateToProps = (state) => ({
+  avgRating: state.ratingReviews.avgRating,
+  totalReviews: state.ratingReviews.totalReviews,
+});
 
-export default Tour;
+export default connect(mapStateToProps)(Tour);
 
 const TourContainer = styled.div`
   z-index: 1;
   width: 100%;
-  height: 70vh;
+  height: 75vh;
   background-image: url(${(props) => props.bg});
   background-size: cover;
   overflow: hidden;
@@ -52,9 +62,16 @@ const Ratings = styled.div`
   margin: 3px 10px;
 `;
 const Star = styled.div`
+  display: flex;
   font-size: 17px;
   font-weight: bold;
   padding: 5px;
   margin: 3px;
+  align-items: center;
+  p {
+    margin: 3px 0 0 5px;
+  }
 `;
-const ReviewNumber = styled.div``;
+const ReviewNumber = styled.div`
+  margin: 5px 0 0 7px;
+`;

@@ -1,8 +1,20 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import Overview from "./Overview";
+import Reviews from "./Reviews";
+
+import { getReviews } from "../redux/rating-reviews/ratingReviews.action";
+import { getOverview } from "../redux/overview/overview.action";
+import { connect } from "react-redux";
 
 class ReviewOverview extends Component {
   state = { overview: true, review: false };
+
+  componentDidMount() {
+    this.props.getReviews();
+    this.props.getOverview();
+  }
+
   handleRenderOverview = () => {
     if (!this.state.overview) {
       this.setState({ overview: true, review: false });
@@ -16,17 +28,42 @@ class ReviewOverview extends Component {
   render() {
     return (
       <ReviewOverviewContainer>
-        <div className="btn_switcher_container">
-          <button onClick={this.handleRenderOverview}>Overview</button>
-          <button onClick={this.handleRenderReview}>Reviews</button>
+        <Switch className="btn_switcher_container">
+          <Button
+            clicked={this.state.overview}
+            onClick={this.handleRenderOverview}
+          >
+            <p>Overview</p>
+            <span className="dot"></span>
+          </Button>
+          <Button clicked={this.state.review} onClick={this.handleRenderReview}>
+            <p>Reviews</p>
+            <span className="dot"></span>
+          </Button>
+        </Switch>
+
+        <div>
+          {this.state.overview ? (
+            <Overview overview={this.props.overview} />
+          ) : (
+            <Reviews reviews={this.props.reviews} />
+          )}
         </div>
-        <div>{this.state.overview ? "Overview" : "Reviews"}</div>
       </ReviewOverviewContainer>
     );
   }
 }
 
-export default ReviewOverview;
+const mapStateToProps = (state) => ({
+  reviews: state.ratingReviews.reviews,
+  overview: state.overview.overview,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getReviews: () => dispatch(getReviews()),
+  getOverview: () => dispatch(getOverview()),
+});
+export default connect(mapStateToProps, mapDispatchToProps)(ReviewOverview);
 
 const ReviewOverviewContainer = styled.div`
   min-height: calc(40vh);
@@ -37,9 +74,36 @@ const ReviewOverviewContainer = styled.div`
   background: whitesmoke;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  .btn_switcher_container {
-    padding-top: 100px;
-    min-height: 30px;
-    z-index: 90;
+`;
+const Switch = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  width: 90%;
+  margin: auto;
+  min-height: 30px;
+  z-index: 90;
+  padding-top: 30px;
+`;
+const Button = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+  font-weight: bold;
+  color: grey;
+  ${(props) =>
+    props.clicked &&
+    css`
+      color: red;
+      .dot {
+        margin-top: 5px;
+        height: 7px;
+        width: 7px;
+        background-color: red;
+        border-radius: 50%;
+      }
+    `}
+  &:hover {
+    cursor: pointer;
   }
 `;

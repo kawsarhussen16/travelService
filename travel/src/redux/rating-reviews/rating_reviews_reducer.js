@@ -1,27 +1,24 @@
 import ratingReviewsActionTypes from "./ratingReviews.action";
+import { getReviews, getAverageRating } from "./rating_reviews.utils";
 const initialState = {
-  ratings: 5,
-  reviews: [
-    { name: "Helen", rating: 5, comment: "Amazing" },
-    { name: "David", rating: 4, comment: "Not bad" },
-  ],
+  avgRating: 0,
+  totalReviews: 0,
+  reviews: [],
 };
 
-const ratingReducer = (state = initialState, action) => {
+const ratingReviewsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ratingReviewsActionTypes.GET_RATINGS:
-      return {
-        ...state,
-        ratings: action.payload,
-      };
     case ratingReviewsActionTypes.GET_REVIEWS:
+      let reviews = getReviews();
+      let ratings = getAverageRating(reviews);
+      state = { ...state, ...ratings };
       return {
         ...state,
-        ratings: action.payload,
+        reviews: reviews,
       };
     default:
       return state;
   }
 };
 
-export default ratingReducer;
+export default ratingReviewsReducer;

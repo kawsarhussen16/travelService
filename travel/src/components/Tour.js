@@ -33,7 +33,7 @@ export default connect(mapStateToProps)(Tour);
 const TourContainer = styled.div`
   z-index: 1;
   width: 100%;
-  height: 75vh;
+  height: 70vh;
   background-image: url(${(props) => props.bg});
   background-size: cover;
   overflow: hidden;

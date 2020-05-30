@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 //const image = { bg: "black" };
 class Tour extends Component {
   render() {
-    console.log(this.props);
     return (
       <TourContainer bg={bg}>
         <Content>

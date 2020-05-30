@@ -22,7 +22,6 @@ export const fetchOverviewFailure = (err) => ({
 export const fetchOverviewAsync = () => (dispatch) => {
   dispatch(fetchOverviewStart());
   const collectionRef = firestore.collection("canyone");
-  dispatch(fetchOverviewStart());
   collectionRef
     .get()
     .then((data) => {

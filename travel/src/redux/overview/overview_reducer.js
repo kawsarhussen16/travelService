@@ -1,19 +1,28 @@
 import overviewActionTypes from "./overview.action";
-import { getOverview } from "./overview.utils";
+
 const initialState = {
   overview: null,
+  isFetching: false,
+  err: undefined,
 };
 
-const overviewReducer = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case overviewActionTypes.GET_OVERVIEW:
-      return {
-        ...state,
-        overview: getOverview(),
-      };
+    case overviewActionTypes.FETCH_OVERVIEW_START:
+      return Object.assign({}, state, { isFetching: true });
+    case overviewActionTypes.FETCH_OVERVIEW_SUCCESS:
+      return Object.assign({}, state, {
+        isFetching: false,
+        overview: action.payload,
+      });
+    case overviewActionTypes.FETCH_OVERVIEW_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        err: action.payload,
+      });
     default:
       return state;
   }
 };
 
-export default overviewReducer;
+export default reducer;

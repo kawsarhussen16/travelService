@@ -5,7 +5,7 @@ import LocalOfferOutlinedIcon from "@material-ui/icons/LocalOfferOutlined";
 const Overview = ({ overview }) => {
   return (
     <OverviewContainer>
-      {overview !== null ? (
+      {overview ? (
         <>
           <OverviewTop>
             <Container>
@@ -43,7 +43,7 @@ const Overview = ({ overview }) => {
           <div>{overview.description}</div>
         </>
       ) : (
-        "<div>Loading...</div>"
+        "Loading..."
       )}
     </OverviewContainer>
   );

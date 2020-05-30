@@ -1,7 +1,9 @@
 const overviewActionTypes = {
-  GET_PRICE: "GET_PRICE",
-  GET_DURATION: "GET_DURATION",
-  GET_DESCRIPTIONS: "GET_DESCRIPTIONS",
+  GET_OVERVIEW: "GET_OVERVIEW",
 };
+
+export const getOverview = () => ({
+  type: overviewActionTypes.GET_OVERVIEW,
+});
 
 export default overviewActionTypes;

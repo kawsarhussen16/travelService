@@ -1,10 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-
+import BookmarkSharpIcon from "@material-ui/icons/BookmarkSharp";
 const Bookmark = () => {
   return (
     <BookmarkConatiner>
-      <button className="btn btn-save">Save</button>
+      <button className="btn">
+        <BookmarkSharpIcon color="secondary" />
+      </button>
     </BookmarkConatiner>
   );
 };
@@ -24,5 +26,6 @@ const BookmarkConatiner = styled.div`
     width: 60px;
     height: 60px;
     border-radius: 50%;
+    outline: none;
   }
 `;

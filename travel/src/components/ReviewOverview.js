@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import styled, { css } from "styled-components";
 import Overview from "./Overview";
 import Reviews from "./Reviews";
-import { getReviews } from "../redux/rating-reviews/ratingReviews.action";
 import { fetchOverviewAsync } from "../redux/overview/overview.action";
+import { fetchReviewsAsync } from "../redux/rating-reviews/ratingReviews.action";
 import { connect } from "react-redux";
 
 class ReviewOverview extends Component {
   state = { overview: true, review: false };
 
   componentDidMount() {
-    const { fetchOverviewAsync, getReviews } = this.props;
-    getReviews();
+    const { fetchOverviewAsync, fetchReviewsAsync } = this.props;
+    fetchReviewsAsync();
     fetchOverviewAsync();
   }
 
@@ -60,7 +60,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  getReviews: () => dispatch(getReviews()),
+  fetchReviewsAsync: () => dispatch(fetchReviewsAsync()),
   fetchOverviewAsync: () => dispatch(fetchOverviewAsync()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewOverview);

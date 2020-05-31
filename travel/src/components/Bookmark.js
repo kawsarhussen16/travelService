@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import BookmarkSharpIcon from "@material-ui/icons/BookmarkSharp";
 const Bookmark = () => {
+  const [save, setSave] = useState(false);
+  const handleSubmit = () => setSave(!save);
   return (
     <BookmarkConatiner>
       <button className="btn">
-        <BookmarkSharpIcon color="secondary" />
+        <BookmarkSharpIcon
+          onClick={handleSubmit}
+          color={save ? "secondary" : ""}
+        />
       </button>
     </BookmarkConatiner>
   );
@@ -27,5 +32,10 @@ const BookmarkConatiner = styled.div`
     height: 60px;
     border-radius: 50%;
     outline: none;
+    background: white;
+    box-shadow: 0.1px 0.1px 20px grey;
+    &:hover {
+      cursor: pointer;
+    }
   }
 `;

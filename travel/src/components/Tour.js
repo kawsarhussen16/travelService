@@ -45,32 +45,36 @@ const Content = styled.div`
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 20px;
-  margin-bottom: 60px;
+  margin: 0px 0px 90px 0px;
 `;
 const Title = styled.div`
+  flex: 3;
   font-size: 30px;
   display: flex;
   flex-wrap: wrap;
-  width: 60%;
-  margin: auto 10px;
+  padding: 0;
+  margin-left: 20px;
 `;
 
 const Ratings = styled.div`
-  width: 39%;
-  margin: 3px 10px;
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  text-align: end;
+  margin-right: 10%;
 `;
 const Star = styled.div`
+  justify-content: flex-end;
   display: flex;
   font-size: 17px;
   font-weight: bold;
   padding: 5px;
   margin: 3px;
-  align-items: center;
   p {
     margin: 3px 0 0 5px;
+    font-size: 23px;
   }
 `;
 const ReviewNumber = styled.div`
-  margin: 5px 0 0 7px;
+  font-size: 16px;
 `;

@@ -53,6 +53,7 @@ export default function FormDialog() {
             className="form-item"
             margin="dense"
             id="date"
+            label="Date"
             type="date"
             fullWidth
           />
@@ -60,6 +61,7 @@ export default function FormDialog() {
             className="form-item"
             margin="dense"
             id="time"
+            label="Time"
             type="time"
             fullWidth
           />

@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-
+import Modal from "./utils/Modal";
 const Footer = () => {
   return (
     <FooterContainer>
-      <Button>Book Now</Button>
+      <Modal />{" "}
     </FooterContainer>
   );
 };
@@ -16,13 +16,4 @@ const FooterContainer = styled.div`
   position: fixed;
   bottom: 0;
   left: 0;
-`;
-const Button = styled.button`
-  width: 100%;
-  background: red;
-  color: white;
-  height: 50px;
-  font-size: 20px;
-  border-radius: 15px;
-  border: none;
 `;

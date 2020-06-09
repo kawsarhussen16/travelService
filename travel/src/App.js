@@ -4,14 +4,18 @@ import Tour from "./components/Tour";
 import Bookmark from "./components/Bookmark";
 import ReviewOverview from "./components/ReviewOverview";
 import "./App.css";
-
+import { IonApp, IonContent } from "@ionic/react";
 function App() {
   return (
-    <Layout>
-      <Tour />
-      <Bookmark />
-      <ReviewOverview />
-    </Layout>
+    <IonApp>
+      <IonContent>
+        <Layout>
+          <Tour />
+          <Bookmark />
+          <ReviewOverview />
+        </Layout>
+      </IonContent>
+    </IonApp>
   );
 }
 

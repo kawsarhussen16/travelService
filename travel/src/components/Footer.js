@@ -4,7 +4,7 @@ import Modal from "./utils/Modal";
 const Footer = () => {
   return (
     <FooterContainer>
-      <Modal />{" "}
+      <Modal />
     </FooterContainer>
   );
 };
@@ -14,6 +14,6 @@ const FooterContainer = styled.div`
   z-index: 999;
   width: 100%;
   position: fixed;
-  bottom: 0;
+  bottom: -4px;
   left: 0;
 `;

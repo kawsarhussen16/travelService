@@ -1,12 +1,11 @@
-import styled from "styled-components";
 import React from "react";
-import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import { IonButton } from "@ionic/react";
 
 export default function FormDialog() {
   const [open, setOpen] = React.useState(false);
@@ -20,10 +19,16 @@ export default function FormDialog() {
   };
 
   return (
-    <div>
-      <ButtonStyle variant="outlined" color="primary" onClick={handleClickOpen}>
+    <>
+      <IonButton
+        strong="true"
+        shape="round"
+        expand="full"
+        color="danger"
+        onClick={handleClickOpen}
+      >
         Book Now
-      </ButtonStyle>
+      </IonButton>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -67,28 +72,14 @@ export default function FormDialog() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose} color="primary">
+          <IonButton size="small" onClick={handleClose} color="warning">
             Cancel
-          </Button>
-          <Button onClick={handleClose} color="primary">
+          </IonButton>
+          <IonButton size="small" onClick={handleClose} color="success">
             Submit
-          </Button>
+          </IonButton>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 }
-
-const ButtonStyle = styled.button`
-  width: 100%;
-  background: red;
-  color: white;
-  height: 50px;
-  font-size: 20px;
-  border-radius: 15px;
-  border: none;
-  outline: none;
-  &:hover {
-    cursor: pointer;
-  }
-`;
